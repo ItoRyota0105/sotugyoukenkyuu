@@ -1,0 +1,21 @@
+import medleydb as mdb
+
+# アノテーションとメタデータのみをロードする
+# has_audio=False にすれば音声ファイルが無くても動作します
+all_multitracks = mdb.load_all_multitracks(has_audio=False)
+
+print("MedleyDBのメタデータの読み込みに成功しました。")
+print("-" * 30)
+
+# 最初の5曲の情報を表示してみる
+for i, mtrack in enumerate(all_multitracks):
+    if i >= 5:
+        break
+    print(f"曲名: {mtrack.title}")
+    print(f"アーティスト: {mtrack.artist}")
+    print(f"ジャンル: {mtrack.genre}")
+
+    # この曲に含まれる楽器のリストを取得
+    instrument_list = mtrack.instrument_list
+    print(f"楽器編成: {instrument_list}")
+    print("-" * 30)
